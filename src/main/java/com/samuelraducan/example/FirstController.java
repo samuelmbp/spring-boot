@@ -33,4 +33,11 @@ public class FirstController {
     public Student findStudentById(@PathVariable("id") Integer id) {
         return studentRepository.findById(id).orElse(null);
     }
+
+    @GetMapping("/students/search/{student-name}")
+    public List<Student> findStudentByName(@PathVariable("student-name") String name) {
+        return studentRepository.findAllByFirstNameContaining(name);
+    }
+
+
 }
