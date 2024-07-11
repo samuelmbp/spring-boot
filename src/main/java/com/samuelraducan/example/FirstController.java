@@ -1,5 +1,6 @@
 package com.samuelraducan.example;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,4 +41,9 @@ public class FirstController {
     }
 
 
+    @DeleteMapping("/students/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteStudent(@PathVariable("id") Integer id) {
+        studentRepository.deleteById(id);
+    }
 }
