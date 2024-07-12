@@ -18,6 +18,15 @@ public class Student {
     private String email;
     private Integer age;
 
+    // CascadeType.ALL:
+    //  - WHEN STUDENT IS REMOVED, THE STUDENT PROFILE ALSO IS REMOVED
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private StudentProfile studentProfile;
+
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private School school;
+
     public Student() {
     }
 
@@ -66,5 +75,21 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }
