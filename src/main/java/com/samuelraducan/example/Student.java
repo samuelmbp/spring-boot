@@ -1,5 +1,6 @@
 package com.samuelraducan.example;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,6 +26,9 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "school_id")
+    // Does not need to serialize the parent (school)
+        // avoids infinite loop between school and student
+    @JsonBackReference
     private School school;
 
     public Student() {

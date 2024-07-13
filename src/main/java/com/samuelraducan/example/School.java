@@ -1,5 +1,6 @@
 package com.samuelraducan.example;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,6 +18,9 @@ public class School {
     private String name;
 
     @OneToMany(mappedBy = "school")
+    // the parent(school) is in change of serializing the child (student)
+    // this avoids the infinite loop
+    @JsonManagedReference
     List<Student> students;
 
     public School() {}
