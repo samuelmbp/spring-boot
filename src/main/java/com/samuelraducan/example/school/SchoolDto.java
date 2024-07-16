@@ -1,4 +1,4 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.school;
 
 public record SchoolDto(
         String name

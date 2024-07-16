@@ -1,5 +1,6 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.student;
 
+import com.samuelraducan.example.school.School;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,6 +1,8 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.samuelraducan.example.studentprofile.StudentProfile;
+import com.samuelraducan.example.school.School;
 import jakarta.persistence.*;
 
 @Entity

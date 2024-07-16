@@ -1,12 +1,12 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.school;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.samuelraducan.example.student.Student;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

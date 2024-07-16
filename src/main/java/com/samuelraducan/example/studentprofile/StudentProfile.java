@@ -1,5 +1,6 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.studentprofile;
 
+import com.samuelraducan.example.student.Student;
 import jakarta.persistence.*;
 
 @Entity

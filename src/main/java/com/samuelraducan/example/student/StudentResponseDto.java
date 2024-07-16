@@ -1,4 +1,4 @@
-package com.samuelraducan.example;
+package com.samuelraducan.example.student;
 
 public record StudentResponseDto(
         String firstName,
