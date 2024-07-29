@@ -6,13 +6,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class StudentServiceTest {
@@ -118,7 +117,7 @@ class StudentServiceTest {
     public void should_find_student_by_first_name() {
         String firstName = "John";
         List<Student> students = new ArrayList<>();
-        students.add(new Student("John", "Doe", "john@mail.com", 1));
+        students.add(new Student("John", "Doe", "john@mail.com", 20));
 
         // Mock the calls
         when(studentRepository.findAllByFirstNameContaining(firstName))
@@ -134,5 +133,19 @@ class StudentServiceTest {
         assertEquals(students.size(), responseDto.size());
         verify(studentRepository, times(1))
                 .findAllByFirstNameContaining(firstName);
+    }
+
+    @Test
+    public void should_delete_student_by_id() {
+        int studentId = 1;
+        Student student = new Student(
+                "John", "Doe", "john@mail.com", 20
+        );
+        student.setId(studentId);
+        when(studentRepository.findById(studentId))
+                .thenReturn(Optional.of(student));
+
+        studentService.deleteStudentById(studentId);
+        verify(studentRepository, times(1)).deleteById(studentId);
     }
 }
