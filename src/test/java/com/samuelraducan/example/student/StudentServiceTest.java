@@ -6,9 +6,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -84,5 +86,31 @@ class StudentServiceTest {
         // When
         assertEquals(students.size(), studentResponseDtos.size());
         verify(studentRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void should_return_a_student_by_id() {
+        // Given
+        int studentId = 1;
+        Student student = new Student(
+                "John", "Doe", "john@mail.com", 20
+        );
+
+        // When -> Mocking
+        when(studentRepository.findById(studentId))
+                .thenReturn(Optional.of(student));
+        when(studentMapper.toStudentResponseDto(student))
+                .thenReturn(
+                    new StudentResponseDto("John", "Doe", "john@mail.com")
+                );
+
+        StudentResponseDto responseDto = studentService.findStudentById(studentId);
+
+        // Then
+        assertEquals(student.getFirstName(), responseDto.firstName());
+        assertEquals(student.getLastName(), responseDto.lastName());
+        assertEquals(student.getEmail(), responseDto.email());
+
+        verify(studentRepository, times(1)).findById(studentId);
     }
 }
